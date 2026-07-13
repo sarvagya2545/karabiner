@@ -63,12 +63,18 @@ const rules: KarabinerRules[] = [
   },
   ...createHyperSubLayers({
     // b = "B"rowse
-    b: {},
-    // o = "Open" applications
-    o: {
-      g: app("Google Chrome"),
+    b: {
+      y: open("https://youtube.com"),
+      g: open("https://google.com"),
+      n: open("https://netflix.com"),
+      h: open("https://github.com"),
+    },
+    // a = Applications
+    a: {
+      b: app("Google Chrome"),
       t: app("WezTerm"),
       f: app("Finder"),
+      k: app("Karabiner-Elements"),
     },
 
     // TODO: This doesn't quite work yet.
@@ -182,6 +188,7 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      // Lock the screen!!!
       l: {
         to: [
           {
@@ -190,6 +197,8 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      // restart karabiner config
+      r: shell`~/.config/karabiner/shell_commands/reload.sh`,
       // toggle desktop (mac os)
       d: shell`
         defaults write com.apple.finder CreateDesktop -bool $(defaults read com.apple.finder CreateDesktop 2>/dev/null | grep -qx 1 && echo false || echo true); killall Finder
@@ -210,7 +219,7 @@ const rules: KarabinerRules[] = [
       },
     },
 
-    // v = "moVe" which isn't "m" because we want it to be on the left hand
+    // v -> "vim"
     // so that hjkl work like they do in vim
     v: {
       h: {

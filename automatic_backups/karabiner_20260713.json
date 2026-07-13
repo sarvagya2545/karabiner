@@ -78,7 +78,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 0
                   },
                   {
@@ -130,10 +130,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open https://google.com"
+                    "shell_command": "open https://github.com"
                   }
                 ],
-                "description": "Open https://google.com",
+                "description": "Open https://github.com",
                 "type": "basic",
                 "from": {
                   "key_code": "g",
@@ -174,41 +174,17 @@
                     "value": 1
                   }
                 ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open https://github.com"
-                  }
-                ],
-                "description": "Open https://github.com",
-                "type": "basic",
-                "from": {
-                  "key_code": "h",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_b",
-                    "value": 1
-                  }
-                ]
               }
             ]
           },
           {
-            "description": "Hyper Key sublayer \"a\"",
+            "description": "Hyper Key sublayer \"o\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer a",
+                "description": "Toggle Hyper sublayer o",
                 "type": "basic",
                 "from": {
-                  "key_code": "a",
+                  "key_code": "o",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -218,7 +194,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_a",
+                      "name": "hyper_sublayer_o",
                       "value": 0
                     }
                   }
@@ -226,7 +202,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_a",
+                      "name": "hyper_sublayer_o",
                       "value": 1
                     }
                   }
@@ -268,7 +244,7 @@
                 "description": "Open -a 'Google Chrome.app'",
                 "type": "basic",
                 "from": {
-                  "key_code": "b",
+                  "key_code": "g",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -278,7 +254,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 1
                   }
                 ]
@@ -302,7 +278,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 1
                   }
                 ]
@@ -326,31 +302,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "to": [
-                  {
-                    "shell_command": "open -a 'Karabiner-Elements.app'"
-                  }
-                ],
-                "description": "Open -a 'Karabiner-Elements.app'",
-                "type": "basic",
-                "from": {
-                  "key_code": "k",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 1
                   }
                 ]
@@ -395,7 +347,7 @@
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 0
                   },
                   {
@@ -537,10 +489,37 @@
               {
                 "to": [
                   {
-                    "shell_command": "~/.config/karabiner/shell_commands/reload.sh"
+                    "shell_command": "export PATH=\"/opt/homebrew/bin:$PATH\""
+                  },
+                  {
+                    "shell_command": "cd ~/dotfiles/karabiner/.config/karabiner"
+                  },
+                  {
+                    "shell_command": "ERROR_OUTPUT=$({ npm run build && launchctl kickstart -k gui/$(id -u)/org.pqrs.karabiner.karabiner_console_user_server; } 2>&1)"
+                  },
+                  {
+                    "shell_command": "if [ $? -eq 0 ]; then"
+                  },
+                  {
+                    "shell_command": "osascript -e 'display notification \"Rules rebuilt and reloaded\" with title \"Karabiner\"'"
+                  },
+                  {
+                    "shell_command": "else"
+                  },
+                  {
+                    "shell_command": "SAFE_ERROR=$(echo \"$ERROR_OUTPUT\" | tail -c 200 | tr '"
+                  },
+                  {
+                    "shell_command": "' ' ' | sed 's/\"/\\\"/g')"
+                  },
+                  {
+                    "shell_command": "osascript -e \"display notification \"$SAFE_ERROR\" with title \"Karabiner Build Failed\" sound name \"Basso\"\""
+                  },
+                  {
+                    "shell_command": "fi"
                   }
                 ],
-                "description": "~/.config/karabiner/shell_commands/reload.sh",
+                "description": "        export PATH=\"/opt/homebrew/bin:$PATH\" &&         cd ~/dotfiles/karabiner/.config/karabiner &&         ERROR_OUTPUT=$({ npm run build && launchctl kickstart -k gui/$(id -u)/org.pqrs.karabiner.karabiner_console_user_server; } 2>&1) &&         if [ $? -eq 0 ]; then &&           osascript -e 'display notification \"Rules rebuilt and reloaded\" with title \"Karabiner\"' &&         else &&           SAFE_ERROR=$(echo \"$ERROR_OUTPUT\" | tail -c 200 | tr ' && ' ' ' | sed 's/\"/\\\"/g') &&           osascript -e \"display notification \"$SAFE_ERROR\" with title \"Karabiner Build Failed\" sound name \"Basso\"\" &&         fi",
                 "type": "basic",
                 "from": {
                   "key_code": "r",
@@ -668,7 +647,7 @@
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 0
                   },
                   {
@@ -820,7 +799,7 @@
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "hyper_sublayer_o",
                     "value": 0
                   },
                   {
