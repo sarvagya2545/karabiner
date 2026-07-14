@@ -609,6 +609,30 @@
               {
                 "to": [
                   {
+                    "shell_command": "~/.config/sketchybar/toggle.sh"
+                  }
+                ],
+                "description": "~/.config/sketchybar/toggle.sh",
+                "type": "basic",
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_s",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
                     "shell_command": "defaults write com.apple.finder CreateDesktop -bool $(defaults read com.apple.finder CreateDesktop 2>/dev/null | grep -qx 1 && echo false || echo true); killall Finder"
                   }
                 ],

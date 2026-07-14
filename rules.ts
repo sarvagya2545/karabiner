@@ -201,6 +201,8 @@ const rules: KarabinerRules[] = [
       },
       // restart karabiner config
       r: shell`~/.config/karabiner/shell_commands/reload.sh`,
+      // toggle sketchybar
+      b: shell`~/.config/sketchybar/toggle.sh`,
       // toggle desktop (mac os)
       d: shell`
         defaults write com.apple.finder CreateDesktop -bool $(defaults read com.apple.finder CreateDesktop 2>/dev/null | grep -qx 1 && echo false || echo true); killall Finder
