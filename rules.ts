@@ -68,6 +68,7 @@ const rules: KarabinerRules[] = [
       g: open("https://google.com"),
       n: open("https://netflix.com"),
       h: open("https://github.com"),
+      l: open("https://leetcode.com/problemset"),
     },
     // a = Applications
     a: {
@@ -75,6 +76,7 @@ const rules: KarabinerRules[] = [
       t: app("WezTerm"),
       f: app("Finder"),
       k: app("Karabiner-Elements"),
+      c: app("Maccy"),
     },
 
     // TODO: This doesn't quite work yet.
