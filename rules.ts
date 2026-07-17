@@ -79,6 +79,12 @@ const rules: KarabinerRules[] = [
       c: app("Maccy"),
     },
 
+    // r = reload
+    r: {
+      // reload sketchybar
+      b: shell`~/.config/karabiner/shell_commands/reload/sketchybar.sh`,
+    },
+
     // w = "Window"
     // w: {
     //   semicolon: {
